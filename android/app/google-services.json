@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "600344744778",
+    "firebase_url": "https://unet-79a65.firebaseio.com",
+    "project_id": "unet-79a65",
+    "storage_bucket": "unet-79a65.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:600344744778:android:2d49276db48d5cca1de7b3",
+        "android_client_info": {
+          "package_name": "com.pratikpatil.uNet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "600344744778-r914tsadlpm8v0p5d4cqvgjkhb403udl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.pratikpatil.uNet",
+            "certificate_hash": "93f4fe3e1f72ade9f5b33db9b572141e9aa6505d"
+          }
+        },
+        {
+          "client_id": "600344744778-6t6pjl51m9e6ojcmrb1annqn68o7qmnd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAh1qxWRCSJfQlx4OqEmZC76MWBxkH3DDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "600344744778-6t6pjl51m9e6ojcmrb1annqn68o7qmnd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
