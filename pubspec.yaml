@@ -36,13 +36,18 @@ dependencies:
   geolocator: 5.0.1
   uuid: ^2.0.0
   image: ^2.0.7
-  animator: 0.1.4
+  #animator: 0.1.4
+  animator: ^1.0.0+1
   path_provider: ^0.5.0+1
   firebase_messaging: ^4.0.0+1
   timeago: 2.0.17
   cached_network_image:
   flutter_screenutil: ^0.4.2
   flutter_svg:
+  flutter_spinkit: "^4.1.2"
+  #flutter_bloc: ^0.8.0
+  rxdart: ^0.24.1
+  bloc: ^4.0.0
 
 dev_dependencies:
   flutter_test:

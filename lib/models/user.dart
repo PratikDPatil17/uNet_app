@@ -7,6 +7,8 @@ class User {
   final String photoUrl;
   final String displayName;
   final String bio;
+  final String collageName;
+  final String departmentName;
 
   User({
     this.id,
@@ -15,6 +17,8 @@ class User {
     this.photoUrl,
     this.displayName,
     this.bio,
+    this.collageName,
+    this.departmentName,
   });
 
   factory User.fromDocument(DocumentSnapshot doc){
@@ -25,6 +29,8 @@ class User {
       photoUrl: doc["photoUrl"],
       displayName: doc["displayName"],
       bio: doc["bio"],
+      collageName: doc["collageName"],
+      departmentName: doc["departmentName"]
     );
   }
 

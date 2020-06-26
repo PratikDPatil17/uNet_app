@@ -19,14 +19,14 @@ class _EditProfileState extends State<EditProfile> {
 
   TextEditingController displayNameController = TextEditingController();
   TextEditingController bioController = TextEditingController();
-  //TextEditingController collageNameController = TextEditingController();
-  //TextEditingController departmentNameController = TextEditingController();
+  TextEditingController collageNameController = TextEditingController();
+  TextEditingController departmentNameController = TextEditingController();
   bool isLoading = false;
   User user;
   bool _displayNameValid = true;
   bool _bioValid = true;
-  //bool _departmentNameValid = true;
-  //bool _collageNameValid = true;
+  bool _departmentNameValid = true;
+  bool _collageNameValid = true;
 
   @override
   void initState() {
@@ -43,8 +43,8 @@ class _EditProfileState extends State<EditProfile> {
     user = User.fromDocument(doc);
     displayNameController.text = user.displayName;
     bioController.text = user.bio;
-    //collageNameController.text = user.collageName;
-    //departmentNameController.text = user.departmentName;
+    collageNameController.text = user.collageName;
+    departmentNameController.text = user.departmentName;
     setState(() {
       isLoading = false;
     });
@@ -95,49 +95,49 @@ class _EditProfileState extends State<EditProfile> {
     );
   }
 
-  // Column buildDepartmentNameField(){
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: <Widget>[
-  //       Padding(
-  //         padding: EdgeInsets.only(top: 12.0),
-  //         child: Text("Department Name",
-  //         style: TextStyle(color: Colors.grey),
-  //         ),
-  //       ),
-  //       TextField(
-  //         controller: departmentNameController,
-  //         decoration: InputDecoration(
-  //           hintText: "Update Display Department",
-  //           errorText: _departmentNameValid ? null : "Wrong Department Name",
-  //         ),
+  Column buildDepartmentNameField(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
+          child: Text("Department Name",
+          style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        TextField(
+          controller: departmentNameController,
+          decoration: InputDecoration(
+            hintText: "Update Department",
+            errorText: _departmentNameValid ? null : "Wrong Department Name",
+          ),
 
-  //       ),
-  //     ],
-  //   );
-  // }
+        ),
+      ],
+    );
+  }
 
-  // Column buildCollageNameField(){
-  //   return Column(
-  //     crossAxisAlignment: CrossAxisAlignment.start,
-  //     children: <Widget>[
-  //       Padding(
-  //         padding: EdgeInsets.only(top: 12.0),
-  //         child: Text("Display Collage",
-  //         style: TextStyle(color: Colors.grey),
-  //         ),
-  //       ),
-  //       TextField(
-  //         controller: collageNameController,
-  //         decoration: InputDecoration(
-  //           hintText: "Update Collage Name",
-  //           errorText: _collageNameValid ? null : "Wrong collage Name",
-  //         ),
+  Column buildCollageNameField(){
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: <Widget>[
+        Padding(
+          padding: EdgeInsets.only(top: 12.0),
+          child: Text("Display Collage",
+          style: TextStyle(color: Colors.grey),
+          ),
+        ),
+        TextField(
+          controller: collageNameController,
+          decoration: InputDecoration(
+            hintText: "Update Collage Name",
+            errorText: _collageNameValid ? null : "Wrong collage Name",
+          ),
 
-  //       ),
-  //     ],
-  //   );
-  // }
+        ),
+      ],
+    );
+  }
   
   // Validation for Edit Profile
   updateProfileData(){
@@ -146,17 +146,17 @@ class _EditProfileState extends State<EditProfile> {
 
       bioController.text.trim().length > 50 ? _bioValid = false : _bioValid = true;
 
-      //collageNameController.text.trim().length > 50 || collageNameController.text.isEmpty ? _collageNameValid = false : _collageNameValid = true;
+      collageNameController.text.trim().length > 50 || collageNameController.text.isEmpty ? _collageNameValid = false : _collageNameValid = true;
 
-      //departmentNameController.text.trim().length > 20 || departmentNameController.text.isEmpty ? _departmentNameValid = false : _departmentNameValid = true;
+      departmentNameController.text.trim().length > 20 || departmentNameController.text.isEmpty ? _departmentNameValid = false : _departmentNameValid = true;
     });
-    // if(_displayNameValid && _bioValid && _collageNameValid && _departmentNameValid){
-    if (_displayNameValid && _bioValid){
+    if(_displayNameValid && _bioValid && _collageNameValid && _departmentNameValid){
+    //if (_displayNameValid && _bioValid){
       usersRef.document(widget.currentUserId).updateData({
         "displayName" : displayNameController.text,
         "bio": bioController.text,
-        //"departmentName" : departmentNameController.text,
-        //"collageName" : collageNameController.text,
+        "departmentName" : departmentNameController.text,
+        "collageName" : collageNameController.text,
         });
         SnackBar snackbar = SnackBar(content: Text("Profile Updated!!!"),);
         _scaffoldKey.currentState.showSnackBar(snackbar);
@@ -173,11 +173,11 @@ class _EditProfileState extends State<EditProfile> {
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         title: Text(
           "Edit Profile",
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
           ),
         ),
         actions: <Widget>[
@@ -212,8 +212,8 @@ class _EditProfileState extends State<EditProfile> {
                     children:<Widget>[
                       buildDisplayNameField(),
                       buildBioField(),
-                      //buildDepartmentNameField(),
-                      //buildCollageNameField(),
+                      buildDepartmentNameField(),
+                      buildCollageNameField(),
                       
                     ]
                   ),

@@ -3,15 +3,17 @@ import 'dart:io';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:uNet_app/models/user.dart';
+import 'package:uNet_app/pages/home.dart';
+import 'package:uNet_app/widgets/progress.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:uNet_app/models/user.dart';
-import 'package:uNet_app/widgets/progress.dart';
 import 'package:image/image.dart' as Im;
 import 'package:uuid/uuid.dart';
-import 'package:uNet_app/pages/home.dart';
+
+//import 'package:uNet_app/pages/home.dart';
 
 class Upload extends StatefulWidget {
   final User currentUser;
@@ -22,7 +24,8 @@ class Upload extends StatefulWidget {
   _UploadState createState() => _UploadState();
 }
 
-class _UploadState extends State<Upload> {
+class _UploadState extends State<Upload> 
+    with AutomaticKeepAliveClientMixin<Upload>{
   TextEditingController captionController = TextEditingController ();
   TextEditingController locationController = TextEditingController ();
   File file;
@@ -283,9 +286,11 @@ class _UploadState extends State<Upload> {
     locationController.text = formattedAddress; 
 
   }
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return file == null ? buildSplashScreen() : buildUploadForm();
 
   }

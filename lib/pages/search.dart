@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:uNet_app/models/user.dart';
+import 'package:uNet_app/pages/activity_feed.dart';
 import 'package:uNet_app/pages/home.dart';
 import 'package:uNet_app/widgets/progress.dart';
 
@@ -11,7 +12,8 @@ class Search extends StatefulWidget {
   _SearchState createState() => _SearchState();
 }
 
-class _SearchState extends State<Search> {
+class _SearchState extends State<Search> 
+  with AutomaticKeepAliveClientMixin<Search>{
 // search functions here
   TextEditingController searchController = TextEditingController();
 
@@ -99,9 +101,13 @@ class _SearchState extends State<Search> {
       }
       );
   }
+  bool get wantKeepAlive => true;
 
   @override
   Widget build(BuildContext context) {
+
+    super.build(context);
+
     return Scaffold(
       backgroundColor: Theme.of(context).primaryColor.withOpacity(0.8),
       appBar: buildSearchField(),
@@ -116,26 +122,59 @@ class UserResult extends StatelessWidget {
   UserResult(this.user);
 
   @override
-  Widget build(BuildContext context) {
+//   Widget build(BuildContext context) {
+//     return Container(
+//       color : Theme.of(context).primaryColor.withOpacity(0.6),
+//       child: Column(children: <Widget>[
+//         GestureDetector(
+//           onTap: () => print("tapped"),
+//           child: ListTile(
+//             leading : CircleAvatar(
+//               backgroundColor: Colors.grey,
+//               backgroundImage: CachedNetworkImageProvider(user.photoUrl),
+//             ) ,
+//             title: Text(user.displayName, style: TextStyle(color: Colors.white, fontWeight:FontWeight.bold),),
+//             subtitle: Text(user.username, style: TextStyle(color: Colors.white),),
+//             ),
+//           ),
+//           Divider(
+//             height: 2.0,
+//             color: Colors.white54,
+//           )
+//       ],
+//       ),
+//     );
+//   }
+// }
+
+Widget build(BuildContext context) {
     return Container(
-      color : Theme.of(context).primaryColor.withOpacity(0.6),
-      child: Column(children: <Widget>[
-        GestureDetector(
-          onTap: () => print("tapped"),
-          child: ListTile(
-            leading : CircleAvatar(
-              backgroundColor: Colors.grey,
-              backgroundImage: CachedNetworkImageProvider(user.photoUrl),
-            ) ,
-            title: Text(user.displayName, style: TextStyle(color: Colors.white, fontWeight:FontWeight.bold),),
-            subtitle: Text(user.username, style: TextStyle(color: Colors.white),),
+      color: Theme.of(context).primaryColor.withOpacity(0.6),
+      child: Column(
+        children: <Widget>[
+          GestureDetector(
+            onTap: () => showProfile(context, profileId: user.id),
+            child: ListTile(
+              leading: CircleAvatar(
+                backgroundColor: Colors.grey,
+                backgroundImage: CachedNetworkImageProvider(user.photoUrl),
+              ),
+              title: Text(
+                user.displayName,
+                style:
+                    TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
+              subtitle: Text(
+                user.username,
+                style: TextStyle(color: Colors.white),
+              ),
             ),
           ),
           Divider(
             height: 2.0,
             color: Colors.white54,
-          )
-      ],
+          ),
+        ],
       ),
     );
   }
